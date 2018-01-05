@@ -14,7 +14,6 @@ int main(){
 	x[0]=a;
 	x[1]=b;
 	x[2]=c;
-
 	if(a!=b && b!=c && a!=c){
 		//cout<<1;
 		for(int i=0;i<3;i++){
@@ -23,7 +22,7 @@ int main(){
 			}
 			res=temp*100;
 		}
-		
+	
 	}
 	else if(a==b && b==c && c==a){
 		//cout<<2;
@@ -37,12 +36,10 @@ int main(){
 		else{
 			res=1000+b*100;
 		}
-		
 	}
 	if(res>te){
 		te=res;
 	}
 }
 	cout<<te;
-
 }
