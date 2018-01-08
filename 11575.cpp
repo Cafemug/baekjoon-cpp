@@ -1,8 +1,10 @@
 #include <iostream>
 #include <cstdio>
 #include <cstring>
+#include <time.h>
 using namespace std;
 int main(){
+	clock_t beg=clock();
 	int num,a,b,lens,temp,res;
 	char s[1000000]={0,};
 	cin>>num;
@@ -17,4 +19,7 @@ int main(){
 		}
 		cout<<endl;
 	}
+	clock_t end=clock();
+    long msec=end-beg;
+    cout<<msec;
 }
