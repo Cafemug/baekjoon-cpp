@@ -27,7 +27,6 @@ int main(){
 						n=arr[i];
 					}
 				}
-
 			}
 			if(res==4){
 				re=arr[0]*5000+50000;
@@ -40,7 +39,6 @@ int main(){
 			}
 			else
 				re=arr[3]*100;
-
 		}
 		if(re>te){
 			te=re;
