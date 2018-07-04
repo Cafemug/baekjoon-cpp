@@ -1,21 +1,22 @@
 #include <iostream>
+#include <cstdio>
 using namespace std;
 int main(){
-	int a,b,c;
+	double a,b,c;
 	while(1){
-		cin>>a>>b>>c;
+		scanf("%lf %lf %lf",&a,&b,&c);
 		if(a==0 && b==0 &&c==0) break;
 		if(a==0 || b==0 || c==0){
 			if(b-a==c-b){
-			cout<<"AP"<<" "<<c+b-a<<"\n";
+                printf("AP %.0lf\n",c+b-a);
 		}
 		}
 		else{
-		if(b/a+b%a==c/b+c%a){
-			cout<<"GP"<<" "<<c*b/a<<"\n";
+		if(b/a==c/b){
+            printf("GP %.0lf\n",c*b/a);
 		}
 		else if(b-a==c-b){
-			cout<<"AP"<<" "<<c+b-a<<"\n";
+			printf("AP %.0lf\n",c+b-a);
 		}
 	}
 	}
