@@ -34,11 +34,9 @@ void bfs(int x,int y){
                     if(!check[nx]){
                         check[nx]=true;
                         q.push(nx);
-                        //res++;
                     }
                 }
             }
-            
         }
         res++;
     }
