@@ -18,13 +18,7 @@ int main(){
         for(int j=2; j <= v[i]; ++j){
             for(int k=1; k <= v[i]; ++k){
                 if(k%j==0){
-                    if(c[k]==0)
-                        c[k]=1;
-                    else
-                    {
-                        c[k]=0;
-                    }
-                    
+                    c[k]=!c[k];
                 }
             }
         }
@@ -33,9 +27,6 @@ int main(){
                 cnt++;
             }
         }
-
         cout<<cnt+1<<"\n";
-
     }
-
 }
