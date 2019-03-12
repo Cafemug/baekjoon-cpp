@@ -1,18 +1,19 @@
 #include <iostream>
-#include <math.h>
 using namespace std;
 int main(){
-	long long a,b,c,d=1;
-	cin>>a;
-	for(int i=0;i<a;i++){
-		cin>>b>>c;
-		d=pow(b,c);
-		if(d%10!=0){
-			cout<<d%10<<endl;
-		}
-		else{
-			cout<<10<<endl;
-		}
-	}
-
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    int a,b,c,r;
+    cin>>a;
+    for(int i=0; i<a; ++i){
+        r=1;
+        cin>>b>>c;
+        while(c!=0){
+            if(c & 1 !=0)
+                r=(r*b) % 10;
+            b= b*b%10;
+            c>>=1;
+        }
+        cout<<r<<"\n";
+    }
 }
