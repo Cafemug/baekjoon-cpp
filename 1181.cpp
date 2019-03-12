@@ -9,6 +9,8 @@ bool compare(string a,string b){
 		return a.length() < b.length();
 }
 int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
 	int a;
 	vector<string> v;
 	string s;
@@ -16,16 +18,15 @@ int main(){
 	vector<string>::iterator tt;
 	for(int i=0;i<a;i++){
 		cin>>s;
-		tt=find(v.begin(),v.end(),s);
-		if(tt!=v.end())
-			v.erase(tt);
 		v.push_back(s);
 
 	}
 	sort(v.begin(),v.end(),compare);
 	a=v.size();
-	for(int i=0;i<a;i++){
-		cout<<v[i]<<endl;
+    cout<<v[0]<<"\n";
+	for(int i=1;i<a;i++){
+        if(v[i]!=v[i-1])
+		    cout<<v[i]<<"\n";
 
 	}
 }
