@@ -1,39 +1,29 @@
 #include <iostream>
 #include <string>
+#include <map>
 #include <algorithm>
 using namespace std;
-string n[1000000],e[1000000];
-int a;
-bool cm(string a,string b){
-	return a>b;
-}
-void ser(string b){
-	
-	for(int i=0;i<a;i++){
-		if(n[i]==b){
-			n[i]=" ";
-			break;
-		}
-	}
-	
-}
+
 int main(){
 	ios::sync_with_stdio(false);
 	cin.tie(NULL);
-	cin>>a;
-	for(int i=0;i<a;i++){
-		cin>>n[i]>>e[i];
-		if(e[i]=="leave"){
-			ser(n[i]);
-			n[i]=" ";
-		}	
-	}
-	sort(n,n+a,cm);
-	for(int i=0;i<a;i++){
-		if(n[i]!=" "){
-			cout<<n[i]<<"\n";	
+	map<string, int,greater<string> > m;
+	map<string, int,greater<string> >::iterator it;
+	int num;
+	cin>>num;
+	for(int i=0;i<num;i++){
+		string a,b;
+		cin>>a>>b;
+		if(b=="enter"){
+			m[a]=1;
 		}
-		else
-			break;
+		else{
+			m.erase(a);
+		}
 	}
+
+	for(it = m.begin();it!=m.end();it++){
+		cout<<(*it).first<<"\n";
+	}
+
 }
