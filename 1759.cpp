@@ -12,7 +12,7 @@ void recur(int idx,int depth){
         cout<<"\n";
     }
     
-    for(int i=0;i<b;i++){
+    for(int i=idx;i<b;i++){
         if(!check[i]){
             check[i]=1;
             recur(i,depth+1);
@@ -27,8 +27,6 @@ int main(){
         cin>>arr[i];
     }
     sort(arr,arr+b);
-    for(int i=0;i<=b-a;i++){
-        recur(i,0);
-    }
+    recur(0,0);
 
 }
