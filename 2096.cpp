@@ -1,35 +1,31 @@
 #include <iostream>
 #include <cmath>
 using namespace std;
-int maxd[100001][3];
-int mind[100001][3];
-int arr[100001][3];
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
     int num,maxres,minres;
+    int a,b,c;
+    int pastone_max=0,pastwo_max=0,pasthree_max=0,fuone_max,futwo_max,futhree_max;
+    int pastone_min=0,pastwo_min=0,pasthree_min=0,fuone_min,futwo_min,futhree_min; 
     cin>>num;
     for(int i=0;i<num;i++){
-        int a,b,c;
+        
         cin>>a>>b>>c;
-        if(i==0){
-            maxd[i][0]=a;
-            maxd[i][1]=b;
-            maxd[i][2]=c;
-            mind[i][0]=a;
-            mind[i][1]=b;
-            mind[i][2]=c;
-        }
-        else{
-            maxd[i][0]=max(maxd[i-1][0],maxd[i-1][1])+a;
-            maxd[i][1]=max(maxd[i-1][0],max(maxd[i-1][1],maxd[i-1][2]))+b;
-            maxd[i][2]=max(maxd[i-1][2],maxd[i-1][1])+c;
-            mind[i][0]=min(mind[i-1][0],mind[i-1][1])+a;
-            mind[i][1]=min(mind[i-1][0],min(mind[i-1][1],mind[i-1][2]))+b;
-            mind[i][2]=min(mind[i-1][2],mind[i-1][1])+c;
-        }
+        fuone_max=max(pastone_max,pastwo_max)+a;
+        futwo_max=max(pastone_max,max(pastwo_max,pasthree_max))+b;
+        futhree_max=max(pasthree_max,pastwo_max)+c;
+        fuone_min=min(pastone_min,pastwo_min)+a;
+        futwo_min=min(pastone_min,min(pastwo_min,pasthree_min))+b;
+        futhree_min=min(pasthree_min,pastwo_min)+c;
+        pastone_max = fuone_max;
+        pastwo_max = futwo_max;
+        pasthree_max = futhree_max;
+        pastone_min = fuone_min;
+        pastwo_min = futwo_min;
+        pasthree_min = futhree_min;
     }
-    maxres = max(maxd[num-1][0],max(maxd[num-1][1],maxd[num-1][2]));
-    minres= min(maxd[num-1][0],min(maxd[num-1][1],mind[num-1][2]));
+    maxres = max(fuone_max,max(futwo_max,futhree_max));
+    minres= min(fuone_min,min(futwo_min,futhree_min));
     cout<<maxres<<" "<<minres;
 }
