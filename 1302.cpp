@@ -1,8 +1,8 @@
 #include <iostream>
 #include <map>
 using namespace std;
-map<string,int, greater<string > > m;
-map<string,int, greater<string > >::iterator iter;
+map<string,int> m;
+map<string,int>::iterator iter;
 int main(){
     int n,res=0;
     string keys;
@@ -14,7 +14,7 @@ int main(){
         if(iter != m.end())
             (iter->second)++;
         else{
-            m[temp]=0;
+            m[temp]=1;
         }
     }
     for (iter = m.begin(); iter != m.end(); ++iter){
