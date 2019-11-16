@@ -12,25 +12,16 @@ int main(){
         int len = s.size();
         for(int i=0;i<len;i++){
             int vlen = v.size();
-            if(vlen==0){
+            if(vlen==0 || (vlen ==1 && v[vlen-1]!=s[i])){
                 v.push_back(s[i]);
                 continue;
             }
             if(v[vlen-1]==s[i]){
                 v.pop_back();
-                continue;
-            }
-            if(vlen<=2){
-                v.push_back(s[i]);
             }
             else{
-                if(v[vlen-1]!=s[i]){
                     flag=0;
                     break;
-                }
-                else{
-                    v.pop_back();
-                }
             }
         }
         if(flag)
