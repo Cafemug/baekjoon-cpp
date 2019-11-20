@@ -1,7 +1,6 @@
 #include <iostream>
 using namespace std;
 long long arr[1000001];
-long long arr2[1000001];
 long long sum_arr[1000001]; 
 int main(){
     int n,m,k;
@@ -14,10 +13,10 @@ int main(){
         long long a,b,c;
         cin>>a>>b>>c;
         if(a==1){
-            arr2[b]=c;
+            
         }
         else{
-            
+
         }
     }
 }
