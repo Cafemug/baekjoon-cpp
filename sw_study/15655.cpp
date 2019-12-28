@@ -4,8 +4,7 @@ using namespace std;
 int n,m;
 int arr[10],res[10];
 bool check[10];
-void recur(int x){
-    if(x>n) return;
+void recur(int start, int x){
     if(x==m){
         for(int i=0;i<m;i++){
             cout<<res[i]<<" ";
@@ -13,11 +12,11 @@ void recur(int x){
         cout<<"\n";
         return;
     }
-    for(int i=x;i<n;i++){
+    for(int i=start;i<n;i++){
         if(check[i]) continue;
         check[i]=true;
         res[x]=arr[i];
-        recur(x+1);
+        recur(i+1, x+1);
         check[i]=false;
         
     }
@@ -28,6 +27,6 @@ int main(){
         cin>>arr[i];
     }
     sort(arr,arr+n);
-    recur(0);
+    recur(0,0);
     
 }
