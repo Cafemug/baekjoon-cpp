@@ -5,7 +5,6 @@ bool check[2001];
 int num,sen,idx=0;
 vector<pair<int, int > > v[2001];
 void dfs(int n,int x){
-    // cout<<"n "<<n<<" x "<<x<<"\n";
     if(n>num) return;
     if (x>=4){
         idx=1;
@@ -16,9 +15,7 @@ void dfs(int n,int x){
         pair<int, int> p = v[n][i];
         if(check[p.first]) continue;
         check[p.first] = true;
-        // cout<<p.first<<" first "<<v[n][i].second<<"\n";
         v[n][i].second=(x+1);
-        // cout<<p.first<<" second "<<(x+1)<<"\n";
         dfs(p.first, x+1);
         check[p.first] = false;
         v[n][i].second=p.second;
