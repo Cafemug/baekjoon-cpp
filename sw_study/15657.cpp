@@ -22,6 +22,6 @@ int main(){
         cin>>arr[i];
     }
     sort(arr,arr+n);
-    arr[0]=1;
-    recur(1);
+    // arr[0]=1;
+    // recur(1);
 }
