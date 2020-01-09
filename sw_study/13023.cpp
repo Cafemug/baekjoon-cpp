@@ -31,6 +31,6 @@ int main(){
            v[a].push_back(make_pair(b,0));
            v[b].push_back(make_pair(a,0));
        }
-    //    dfs(0,0);
-    //    cout<<idx;
+       dfs(0,0);
+       cout<<idx;
 }
