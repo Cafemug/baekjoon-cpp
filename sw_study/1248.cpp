@@ -29,20 +29,15 @@ void go(int index, vector<int>& v){
         temp =0;
         v.push_back(temp);
         if(index ==0 ||(index !=0 && check(index, v))){
-            
             go(index+1,v);
-            
         }
         v.pop_back();
-        
     }
     for(int i=1;i<=10;i++){
         temp = s[index][index] * i;
         v.push_back(temp);
         if(index ==0 ||(index !=0 && check(index, v))){
-            
             go(index+1,v);
-            
         }
         v.pop_back();
     }
