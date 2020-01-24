@@ -46,14 +46,10 @@ void go(int num){
                 go(num+1);
                 board[i][j]=0;
                 erase_board(i,j,x);
-
             }
         }
     }
-    
-  
 }
-
 int main(){
     for(int i=0;i<9;i++){
         for(int j=0;j<9;j++){
@@ -65,5 +61,4 @@ int main(){
         }
     }
     go(0);
-    
 }
