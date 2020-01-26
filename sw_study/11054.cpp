@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 using namespace std;
 int arr[1002]={0,};
 int d[1002]={0,};
@@ -11,26 +12,29 @@ int main(){
     for(int i=1;i<=num;i++){
         cin>>arr[i];
     }
-    for(int i=0;i<num;i++){
-        if(arr[i]<arr[i+1]){
-            d[i+1] = d[i]+1;
+    for(int i=1;i<=num;i++){
+        int max_num=0;
+        for(int j=0;j<i;j++){
+            if(arr[i]>arr[j]){
+                if(max_num<d[j]) max_num=d[j];
+            }
         }
-        else{
-            d[i]=d[i+1];
-        }
+        d[i] = max_num +1;
     }
-    for(int i=num+1;i>0;i--){
-        if(arr[i]<arr[i-1]){
-            reverse_d[num-i+1] = reverse_d[num-i]+1;
+    reverse(arr+1,arr+num+1);
+    for(int i=1;i<=num;i++){
+        int max_num=0;
+        for(int j=0;j<i;j++){
+            if(arr[i]>arr[j]){
+                if(max_num<reverse_d[j]) max_num=reverse_d[j];
+            }
         }
-        else{
-            reverse_d[num-i+1] = reverse_d[num-i];
-        }
+        reverse_d[i] = max_num +1;
     }
     for(int i=1;i<=num;i++){
         if(res<(d[i]+reverse_d[num-i+1])){
             res = (d[i]+reverse_d[num-i+1]);
         }
     }
-    cout<<res;
+    cout<<res-1;
 }
