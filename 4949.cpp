@@ -29,7 +29,6 @@ int main(){
             }
             else if(s[i]=='('){
                 v.push_back('(');
-
             }
             else if(s[i]==')'){
                 if(v.size()==0){
@@ -49,5 +48,4 @@ int main(){
         if(flag) cout<<"yes\n";
         else cout<<"no\n";
     }
-    
 }
