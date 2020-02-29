@@ -1,36 +1,39 @@
 #include <iostream>
-#include <vector>
+#include <queue>
+#include <tuple>
 using namespace std;
+int n,m;
+int d[2001];
 bool check[2001];
-int num,sen,idx=0;
-vector<pair<int, int > > v[2001];
-void dfs(int n,int x){
-    if(n>num) return;
-    if (x>=4){
-        idx=1;
-        return;
-    }
-    int len = v[n].size();
-    for(int i=0;i<len;i++){
-        pair<int, int> p = v[n][i];
-        if(check[p.first]) continue;
-        check[p.first] = true;
-        v[n][i].second=(x+1);
-        dfs(p.first, x+1);
-        check[p.first] = false;
-        v[n][i].second=p.second;
-
-    }
-
-}
+queue<int> q[2001];
+queue<int> nest_q;
 int main(){
-       cin>>num>>sen;
-       for(int i=0;i<sen;i++){
-           int a,b;
-           cin>>a>>b;
-           v[a].push_back(make_pair(b,0));
-           v[b].push_back(make_pair(a,0));
-       }
-       dfs(0,0);
-       cout<<idx;
+    int start;
+    cin>>n>>m;
+    while(m--){
+        int x,y;
+        start=x;
+        cin>>x>>y;
+        q[x].push(y);
+        q[y].push(x);    
+    }
+    nest_q.push(start);
+    check[start]=true;
+    while(!nest_q.empty()){
+        int x=nest_q.front();
+        nest_q.pop();
+        int len=q[x].size();
+        for(int w=0;w<len;w++){
+            if(check[w]) continue;
+            d[w]=d[x]+1;
+            nest_q.push(w);
+        }
+    }
+    for(int i=0;i<n;i++){
+        if(d[i]>=4){
+            cout<<1;
+            return 0;
+        }
+    }
+    cout<<0;
 }
