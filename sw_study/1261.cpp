@@ -37,7 +37,6 @@ int main(){
             }
             check[tx][ty]= true;
         }
-        
     }
     cout<<d[n][m];
 }
