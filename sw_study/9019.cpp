@@ -4,115 +4,62 @@
 #include <cstring>
 using namespace std;
 int n;
-int c[10001];
-queue<int> q;
-queue<char> s[10001];
-int make_double(int x){
-    x*=2;
-    if(x>=10000) x%=10000;
-    return x;
+void print_res(int x,int y, int* w, char* h){
+    if(x==y) return;
+    else print_res(w[x],y, w, h);
+    cout<<h[x];
 }
-int make_minus(int x){
-    x-=1;
-    if(x==-1)x=9999;
-    return x;
-
-}
-int make_right(int x){
-    int arr[4]={0,};
-    if(x==0) return 0;
-    int res=0;
-    int i=0;
-    while(x!=0){
-        int temp = x%10;
-        x/=10;
-        arr[i]=temp;
-        i++;
-    }
-    i--;
-    int temp_num=arr[0];
-        for(int x=0;x<i;x++){
-            temp_num*=10;
-        }
-    res+=temp_num;
-    for(int t=i;t>0;t--){
-        int temp_num=arr[t];
-        for(int x=0;x<t-1;x++){
-            temp_num*=10;
-        }
-        res+=temp_num;
-    }
-    return res;
-
-}
-int make_left(int x){
-    int arr[4]={0,};
-    if(x==0) return 0;
-    int res=0;
-    int i=0;
-    while(x!=0){
-        int temp = x%10;
-        x/=10;
-        arr[i]=temp;
-        i++;
-    }
-    i--;
-    for(int t=i-1;t>=0;t--){
-        int temp_num=arr[t];
-        for(int x=0;x<t+1;x++){
-            temp_num*=10;
-        }
-        res+=temp_num;
-    }
-    res+=arr[i];
-    return res;
-
-}
-
 int main(){
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
     cin>>n;
-    memset(s,' ', sizeof(s));
     while(n--){
-        int x,y;
+        bool c[10001];
+        memset(c,false,sizeof(c));
+        char h[10001];
+        int w[10001];
+        int x, y;
+        queue<int> q;
         cin>>x>>y;
-        // cout<<x<<y;
         q.push(x);
         c[x]=true;
         while(!q.empty()){
-            int tx=q.front();
-            cout<<tx<<"\n";
+            int tx= q.front();
             q.pop();
-            int one = make_double(tx);
-            // cout<<one<<"\n";
-            int two = make_minus(tx);
-            int three = make_left(tx);
-            int four = make_right(tx);
-            cout<<one<<" "<<two<<" "<<three<<" "<<four<<"\n";
-            if(!c[one]){
-                q.push(one);
-                c[one]=true;
-                // s[one].push('D');
+            int x_double = tx*2;
+            int x_minus = tx-1;
+            int x_right = tx/10 + (tx%10) * 1000;
+            int x_left = tx%1000 * 10 + tx/1000;
+            if(x_double>9999) x_double%=10000;
+            if(x_minus==-1) x_minus=9999;
+            if(!c[x_double]){
+                c[x_double]=true;
+                w[x_double]=tx;
+                h[x_double] = 'D';
+                q.push(x_double);
             }
-            if(!c[two]){
-                q.push(two);
-                c[two]=true;
-                // s[two].push('S');
+            if(!c[x_minus]){
+                c[x_minus]=true;
+                w[x_minus]=tx;
+                h[x_minus] = 'S';
+                q.push(x_minus);
             }
-            if(!c[three]){
-                q.push(three);
-                c[three]=true;
-                // s[three].push('L');
+            if(!c[x_right]){
+                c[x_right]=true;
+                w[x_right]=tx;
+                h[x_right] = 'R';
+                q.push(x_right);
             }
-            if(!c[four]){
-                q.push(four);
-                c[four]=true;
-                // s[four].push('R');
+            if(!c[x_left]){
+                c[x_left]=true;
+                w[x_left]=tx;
+                h[x_left] = 'L';
+                q.push(x_left);
             }
         }
-        int len = s[y].size();
-        for(int i=0;i<len;i++){
-            cout<<s[y].front();
-            s[y].pop();
-        }
+        print_res(y,x,w,h);
+        if(n!=0)
+            cout<<"\n";
     }
+
 }
