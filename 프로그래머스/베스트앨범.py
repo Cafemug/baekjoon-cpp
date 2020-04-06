@@ -14,9 +14,9 @@ def solution(genres, plays):
             sum_dict[genres[i]] = plays[i]
         else:
             sum_dict[genres[i]] += plays[i]
-    sum_dict = sorted(sum_dict, key=(lambda x: x[1]), reverse=True)
+    sum_dict = sorted(sum_dict.items(), key=(lambda x: -x[1]))
     for item in sum_dict:
-        index_list = sorted(index_dict[item], key=(lambda x: -x[0]))
+        index_list = sorted(index_dict[item[0]], key=(lambda x: -x[0]))
         index_list = index_list[:2]
         for index in index_list:
             answer.append(index[1])
