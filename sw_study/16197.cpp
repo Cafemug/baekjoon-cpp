@@ -6,31 +6,31 @@ int idx[] = {0,0,1,-1};
 int idy[] = {1,-1,0,0};
 int x,y;
 char b[21][21];
-int go(int x1, int y1, int x2, int y2, int count){
+int go(int step, int x1, int y1, int x2, int y2) {
+    if (step == 11) return -1;
+    bool fall1=false, fall2=false;
+    if (x1 < 0 || x1 >= x || y1 < 0 || y1 >= y) fall1 = true;
+    if (x2 < 0 || x2 >= x || y2 < 0 || y2 >= y) fall2 = true;
+    if (fall1 && fall2) return -1;
+    if (fall1 || fall2) return step;
     int ans = -1;
-    if(count>=11){
-        return -1;
-    }
-    for(int i=0;i<4;i++){
-        int ix1 =x1 + idx[i];
-        int iy1 =y1 + idy[i];
-        int ix2 =x2 + idx[i];
-        int iy2 =y2 + idy[i];
-        if((ix1>=x || ix1<0 || iy1<0 || iy1>=y) || (ix2>=x || ix2<0 || iy2<0 || iy2>=y)){
-            return count+1;
+    for (int k=0; k<4; k++) {
+        int nx1 = x1+idx[k];
+        int ny1 = y1+idy[k];
+        int nx2 = x2+idx[k];
+        int ny2 = y2+idy[k];
+        if (0 <= nx1 && nx1 < x && 0 <= ny1 && ny1 < y && b[nx1][ny1] == '#') {
+            nx1 = x1;
+            ny1 = y1;
         }
-        if((ix2>=x || ix2<0 || iy2<0 || iy2>=y) &&(ix1>=x || ix1<0 || iy1<0 || iy1>=y)) return -1;
-        if(b[ix1][iy1] =='#'){
-            ix1=x1;
-            iy1=y1;
+        if (0 <= nx2 && nx2 < x && 0 <= ny2 && ny2 < y && b[nx2][ny2] == '#') {
+            nx2 = x2;
+            ny2 = y2;
         }
-        if(b[ix2][iy2] == '#'){
-            ix2=x2;
-            iy2=y2;
-        }
-        int temp = go(ix1,iy1,ix2,iy2,count+1);
-        if(temp == -1) continue;
-        if(ans == -1 || ans>temp){
+        
+        int temp = go(step+1, nx1, ny1, nx2, ny2);
+        if (temp == -1) continue;
+        if (ans == -1 || ans > temp) {
             ans = temp;
         }
     }
@@ -49,5 +49,5 @@ int main(){
     int a1,b1,a2,b2;
     tie(a1,b1) = v[0];
     tie(a2,b2) = v[1];
-    cout<<go(a1,b1,a2,b2,0);
+    cout<<go(0,a1,b1,a2,b2);
 }
