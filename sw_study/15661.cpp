@@ -9,7 +9,6 @@ int main(){
         }
     }
     for(int i=1;i<n-1;){
-        int j=n-i;
-        
+      
     }
 }
